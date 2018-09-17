@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Button
+        android:id="@+id/buttonPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="67dp"
+        android:text="TAKE PICTURE"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="174dp" />
+
+    <Button
+        android:id="@+id/buttonFileSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="27dp"
+        android:text="SELECT FILE"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGo1"
+        app:layout_constraintEnd_toEndOf="@+id/buttonGo1" />
+
+    <Button
+        android:id="@+id/buttonOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginStart="48dp"
+        android:text="OPEN"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewPhone" />
+
+    <Button
+        android:id="@+id/buttonProgram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="PROGRAM"
+        app:layout_constraintBottom_toTopOf="@+id/buttonOpen"
+        app:layout_constraintStart_toStartOf="@+id/buttonOpen" />
+
+    <Button
+        android:id="@+id/buttonGo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="GO"
+        app:layout_constraintBottom_toTopOf="@+id/buttonProgram"
+        app:layout_constraintStart_toStartOf="@+id/buttonProgram" />
+
+    <Button
+        android:id="@+id/buttonGo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:text="GO"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGo2"
+        app:layout_constraintStart_toStartOf="@+id/buttonGo2" />
+
+    <TextView
+        android:id="@+id/textViewPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginBottom="159dp"
+        android:layout_marginTop="160dp"
+        android:hint="Introduce un teléfono"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewDate"
+        app:layout_constraintTop_toTopOf="@+id/buttonPicture" />
+
+    <TextView
+        android:id="@+id/textViewWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginBottom="84dp"
+        android:layout_marginTop="87dp"
+        android:hint="Introduce una web"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonGo2"
+        app:layout_constraintStart_toStartOf="@+id/buttonPicture"
+        app:layout_constraintTop_toTopOf="@+id/buttonPicture" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="fecha"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewTime"
+        app:layout_constraintEnd_toEndOf="@+id/textViewText"
+        app:layout_constraintStart_toStartOf="@+id/textViewText" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="46dp"
+        android:hint="hora"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhone" />
+
+    <TextView
+        android:id="@+id/textViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginStart="67dp"
+        android:hint="Texto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTime"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
