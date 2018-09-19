@@ -20,6 +20,9 @@ import android.widget.Toast;
 import com.app.android.intents.R;
 import com.app.android.intents.application.TimePickerFragment;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     ImageView imagePhoto;
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         openText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent textActivity = new Intent();
+                Intent textActivity = new Intent(MainActivity.this, textActivity.class);
                 textActivity.putExtra("text", textText.getText().toString());
                 startActivity(textActivity);
             }
@@ -136,9 +139,20 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     }
 
     private void openWeb(String url){
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse("http://" + url));
-        startActivity(i);
+        if(!TextUtils.isEmpty(url)) {
+            if(isUrl(url)){
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                url=url.replace("http://","");
+
+                i.setData(Uri.parse("http://" + url.replace(" ","")));
+                startActivity(i);
+            }else{
+                Toast.makeText(MainActivity.this, "Invalid website", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            Toast.makeText(MainActivity.this, "Enter a website", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void callNumber(String number){
@@ -151,6 +165,19 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         }
     }
 
+    public boolean isUrl(String s) {
+        String regex = "^(https?://)?(([\\w!~*'().&=+$%-]+: )?[\\w!~*'().&=+$%-]+@)?(([0-9]{1,3}\\.){3}[0-9]{1,3}|([\\w!~*'()-]+\\.)*([\\w^-][\\w-]{0,61})?[\\w]\\.[a-z]{2,6})(:[0-9]{1,4})?((/*)|(/+[\\w!~*'().;?:@&=+$,%#-]+)+/*)$";
+
+        try {
+            Pattern patt = Pattern.compile(regex);
+            Matcher matcher = patt.matcher(s);
+            return matcher.matches();
+
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
     public void createAlarm(String message, int hour, int minutes) {
         Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
                 .putExtra(AlarmClock.EXTRA_MESSAGE, message)
@@ -160,4 +187,5 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             startActivity(intent);
         }
     }
+
 }

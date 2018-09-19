@@ -20,6 +20,6 @@ public class textActivity extends Activity {
         setContentView(activity_text);
 
         text = (TextView) findViewById(R.id.centerText);
-        text.setText(getIntent().getStringExtra("text"));
+        text.setText(getIntent().getExtras().getString("text"));
     }
 }
