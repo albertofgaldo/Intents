@@ -4,137 +4,173 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".view.MainActivity"
     tools:layout_editor_absoluteY="81dp">
 
-    <Button
-        android:id="@+id/buttonPicture"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="TAKE PICTURE"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagePhoto" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonFileSelect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="32dp"
-        android:text="SELECT FILE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagePhoto" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
 
-    <Button
-        android:id="@+id/buttonOpen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:text="OPEN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonProgram" />
+            <EditText
+                android:id="@+id/textViewMin"
+                android:layout_width="26dp"
+                android:layout_height="34dp"
 
-    <Button
-        android:id="@+id/buttonProgram"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:text="PROGRAM"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGo2" />
+                android:layout_marginTop="24dp"
+                android:hint="min"
+                android:inputType="number"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPhone" />
 
-    <Button
-        android:id="@+id/buttonGo2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:text="GO"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGo1" />
+            <EditText
+                android:id="@+id/textViewHour"
+                android:layout_width="31dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="16dp"
 
-    <Button
-        android:id="@+id/buttonGo1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:text="GO"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFileSelect" />
+                android:layout_marginTop="24dp"
+                android:hint="hour"
+                android:inputType="number"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPhone" />
 
-    <EditText
-        android:id="@+id/textViewPhone"
-        android:layout_width="145dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:hint="Introduce un teléfono"
-        android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWeb" />
+            <Button
+                android:id="@+id/buttonGo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:text="GO web"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonFileSelect" />
 
-    <EditText
-        android:id="@+id/textViewWeb"
-        android:layout_width="145dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:hint="Introduce una web"
-        android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPicture" />
+            <EditText
+                android:id="@+id/textViewWeb"
+                android:layout_width="145dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:hint="Introduce una web"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonPicture" />
 
-    <EditText
-        android:id="@+id/textViewDate"
-        android:layout_width="52dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:hint="fecha"
-        android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPhone" />
+            <EditText
+                android:id="@+id/textViewText"
+                android:layout_width="144dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:hint="Texto"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMin" />
 
-    <EditText
-        android:id="@+id/textViewTime"
-        android:layout_width="41dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:hint="hora"
-        android:inputType="time"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewDate"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPhone" />
+            <Button
+                android:id="@+id/buttonOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:text="OPEN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonProgram" />
 
-    <EditText
-        android:id="@+id/textViewText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Texto"
-        android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+            <Button
+                android:id="@+id/buttonGo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:text="call"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonGo1" />
 
-    <ImageView
-        android:id="@+id/imagePhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="92dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+            <Button
+                android:id="@+id/buttonProgram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:text="set alarm"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonGo2" />
+
+            <Button
+                android:id="@+id/buttonFileSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="32dp"
+                android:text="SELECT FILE"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagePhoto" />
+
+            <Button
+                android:id="@+id/buttonPicture"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="TAKE PICTURE"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagePhoto" />
+
+            <EditText
+                android:id="@+id/textViewPhone"
+                android:layout_width="145dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:hint="Introduce un teléfono"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewWeb" />
+
+            <ImageView
+                android:id="@+id/imagePhoto"
+                android:layout_width="307dp"
+                android:layout_height="152dp"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.488"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="12dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="24dp"
+                android:text=":"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/textViewHour"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPhone"
+                tools:text=":" />
+
+            <Button
+                android:id="@+id/setAlarmButton"
+                android:layout_width="75dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="24dp"
+                android:text="set time"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/textViewMin"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPhone" />
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

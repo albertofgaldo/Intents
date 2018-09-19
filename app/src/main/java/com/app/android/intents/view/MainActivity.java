@@ -1,10 +1,12 @@
-package com.app.android.intents;
+package com.app.android.intents.view;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.AlarmClock;
 import android.provider.MediaStore;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,18 +14,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.app.android.intents.R;
+import com.app.android.intents.application.TimePickerFragment;
 
-import java.io.File;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     ImageView imagePhoto;
-    Button takePicture, selectFile, goWeb, goPhone, programDate, openText;
-    EditText textWeb, textPhone, textDate, textTime, textText;
+    Button takePicture, selectFile, goWeb, goPhone, programAlarm, setAlarm, openText;
+    EditText textWeb, textPhone, textTimeHour, textTimeMin, textText;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int PICK_IMAGE = 100;
@@ -34,19 +35,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         imagePhoto = (ImageView)findViewById(R.id.imagePhoto);
 
         takePicture = (Button)findViewById(R.id.buttonPicture);
         selectFile = (Button)findViewById(R.id.buttonFileSelect);
         goWeb = (Button)findViewById(R.id.buttonGo1);
         goPhone = (Button)findViewById(R.id.buttonGo2);
-        programDate = (Button)findViewById(R.id.buttonProgram);
+        programAlarm = (Button)findViewById(R.id.buttonProgram);
+        setAlarm = (Button)findViewById(R.id.setAlarmButton);
         openText = (Button)findViewById(R.id.buttonOpen);
 
         textWeb = (EditText)findViewById(R.id.textViewWeb);
         textPhone = (EditText)findViewById(R.id.textViewPhone);
-        textDate = (EditText)findViewById(R.id.textViewDate);
-        textTime = (EditText)findViewById(R.id.textViewTime);
+        textTimeHour = (EditText)findViewById(R.id.textViewHour);
+        textTimeMin = (EditText)findViewById(R.id.textViewMin);
         textText = (EditText)findViewById(R.id.textViewText);
 
         takePicture.setOnClickListener(new View.OnClickListener() {
@@ -77,12 +80,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        programDate.setOnClickListener(new View.OnClickListener() {
+        setAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAlarm("Nueva alarma",Integer.parseInt(textTime.getText().subSequence(0,2).toString()),Integer.parseInt(textTime.getText().subSequence(3,5).toString()));
+                DialogFragment timePicker = new TimePickerFragment();
+                timePicker.show(getSupportFragmentManager(), "time picker");
             }
         });
+
+        programAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAlarm("Nueva alarma",Integer.parseInt(textTimeHour.getText().toString()),Integer.parseInt(textTimeMin.getText().toString()));
+            }
+        });
+
+        openText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent textActivity = new Intent();
+                textActivity.putExtra("text", textText.getText().toString());
+                startActivity(textActivity);
+            }
+        });
+    }
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        textTimeHour.setText(Integer.toString(hourOfDay));
+        textTimeMin.setText(Integer.toString(minute));
     }
 
     @Override
