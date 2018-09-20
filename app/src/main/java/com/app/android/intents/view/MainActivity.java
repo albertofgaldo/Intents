@@ -10,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +26,7 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
-    ImageView imagePhoto;
+    public static ImageView imagePhoto;
     Button takePicture, selectFile, goWeb, goPhone, programAlarm, setAlarm, openText;
     EditText textWeb, textPhone, textTimeHour, textTimeMin, textText;
 
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         imagePhoto = (ImageView)findViewById(R.id.imagePhoto);
 
@@ -94,16 +94,24 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         programAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAlarm("Nueva alarma",Integer.parseInt(textTimeHour.getText().toString()),Integer.parseInt(textTimeMin.getText().toString()));
+                if(textTimeHour.getText().toString().isEmpty() || textTimeMin.getText().toString().isEmpty()){
+                    showToast("Invalid alarm time");
+                }else{
+                    createAlarm("Nueva alarma",Integer.parseInt(textTimeHour.getText().toString()),Integer.parseInt(textTimeMin.getText().toString()));
+                }
             }
         });
 
         openText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent textActivity = new Intent(MainActivity.this, textActivity.class);
-                textActivity.putExtra("text", textText.getText().toString());
-                startActivity(textActivity);
+                if(!textText.getText().toString().isEmpty()){
+                    Intent textActivity = new Intent(MainActivity.this, textActivity.class);
+                    textActivity.putExtra("text", textText.getText().toString());
+                    startActivity(textActivity);
+                }else{
+                    showToast("Inset a text");
+                }
             }
         });
     }
@@ -142,26 +150,21 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         if(!TextUtils.isEmpty(url)) {
             if(isUrl(url)){
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                url=url.replace("http://","");
-
-                i.setData(Uri.parse("http://" + url.replace(" ","")));
                 startActivity(i);
             }else{
-                Toast.makeText(MainActivity.this, "Invalid website", Toast.LENGTH_SHORT).show();
+                showToast("Invalid website");
             }
         }else {
-            Toast.makeText(MainActivity.this, "Enter a website", Toast.LENGTH_SHORT).show();
+            showToast("Enter a website");
         }
-
     }
 
     private void callNumber(String number){
-
         if(!TextUtils.isEmpty(number)) {
             String dial = "tel:" + number;
             startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
         }else {
-            Toast.makeText(MainActivity.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
+            showToast("Enter a phone number");
         }
     }
 
@@ -186,6 +189,18 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
+    }
+
+    public void showToast(String text){
+        Toast toast = new Toast(MainActivity.this);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       // imagePhoto.setImageBitmap(image);
     }
 
 }
